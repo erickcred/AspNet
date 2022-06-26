@@ -8,7 +8,7 @@ namespace Todo.Controllers
     [ApiController]
     public class HomeController : Controller
     {
-        [HttpGet("/")]
+        [HttpGet("/Home")]
         // [Route("/")]
         public List<TodoModel> Get(
             [FromServices]AppDbContext context)
@@ -16,7 +16,7 @@ namespace Todo.Controllers
             return context.Todos.ToList();
         }
 
-        [HttpGet("/{id:int}")]
+        [HttpGet("/Home/{id:int}")]
         public TodoModel GetById(
             [FromRoute]int id,
             [FromServices]AppDbContext context)
@@ -24,7 +24,7 @@ namespace Todo.Controllers
             return context.Todos.FirstOrDefault(x => x.Id == id);
         }
 
-        [HttpPost("/")]
+        [HttpPost("/Home")]
         public TodoModel Post(
             [FromBody]TodoModel model, 
             [FromServices]AppDbContext context)
@@ -34,7 +34,7 @@ namespace Todo.Controllers
             return model;
         }
 
-        [HttpPut("/")]
+        [HttpPut("/Home")]
         public TodoModel Put(
             [FromBody] TodoModel model,
             [FromServices]AppDbContext context)
@@ -44,7 +44,7 @@ namespace Todo.Controllers
             return model;
         }
 
-        [HttpDelete("/")]
+        [HttpDelete("/Home")]
         public TodoModel Delete(
             [FromBody]TodoModel model,
             [FromServices]AppDbContext context)
@@ -54,7 +54,7 @@ namespace Todo.Controllers
             return model;
         }
 
-        [HttpDelete("/{id:int}")]
+        [HttpDelete("/Home/{id:int}")]
         public TodoModel Delete(
             [FromRoute]int id,
             [FromServices]AppDbContext context)
@@ -66,12 +66,12 @@ namespace Todo.Controllers
             return model;
         }
 
-        [HttpGet("/home")]
-        public IActionResult Home()
-        {
-            var context = new AppDbContext();
-            var model = context.Todos.ToList();
-            return View(model);
-        }
+        // [HttpGet("/Home")]
+        // public IActionResult Home()
+        // {
+        //     var context = new AppDbContext();
+        //     var model = context.Todos.ToList();
+        //     return View(model);
+        // }
     }
 }
